@@ -1,4 +1,4 @@
-This is my github repo for storing my dotfiles for all the config i do. This config is very related to:
+This is my github repo for storing my dotfiles for all the config i do. This config is very dependant on:
 - My downloaded packages
 - My operating system
 - My hardware
