@@ -1,16 +1,13 @@
--- lua/plugins/lsp.lua
 return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- Mason core
       {
         "mason-org/mason.nvim",
         opts = {
           ui = { icons = { installed = "✓", pending = "➜", uninstalled = "✗" } },
         },
       },
-      -- Mason-LSPConfig bridge
       {
         "mason-org/mason-lspconfig.nvim",
         opts = {
@@ -19,27 +16,20 @@ return {
         },
         dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
       },
-      -- neodev auto-configuration for lua_ls
       { "folke/neodev.nvim", opts = {} },
-      -- cmp-Nvim-LSP for signature/completion cap injection
       "hrsh7th/cmp-nvim-lsp",
     },
 
     config = function()
-      -- Setup Mason (ensure it runs early to adjust PATH)
       require("mason").setup()
 
-      -- Enable cmp capabilities
       local capabilities =
         require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      -- Let neodev do its overrides for lua_ls (runtime path, library, globals, etc.)
       require("neodev").setup()
 
-      -- Tell Mason-LSPConfig to install and auto‑enable servers
       require("mason-lspconfig").setup()
 
-      -- Configure all servers generically (use wildcard for clustering if desired)
       vim.lsp.config("*", {
         capabilities = capabilities,
         on_attach = function(client, bufnr)
@@ -59,7 +49,6 @@ return {
         end,
       })
 
-      -- Specific lua_ls configuration (merges defaults from neodev)
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
@@ -78,7 +67,6 @@ return {
         },
       })
 
-      -- Auto‑pair integration with cmp
       require("cmp").event:on("confirm_done",
         require("nvim-autopairs.completion.cmp").on_confirm_done())
     end,
