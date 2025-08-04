@@ -4,7 +4,9 @@ This is my github repo for storing my dotfiles for all the config i do. This con
 - My hardware
 
 even then, you can still download the dotfiles and packages and just modify them to your needs.
+
 My setup was heavily influenced by maxhu08's dotfiles, this is basically just his setup but modifed.
+
 You can visit maxhu08's github here:
 - https://github.com/maxhu08/
 
