@@ -1,7 +1,0 @@
-*.key
-*.gpg
-*id_ed25519*
-*.swp
-*~  
-.cache/
-.local/share/
