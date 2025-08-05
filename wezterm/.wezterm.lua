@@ -31,9 +31,6 @@ wezterm.on("update-status", function(window, _)
 end)
 
 return {
-  set_environment_variables = {
-    SSH_AUTH_SOCK = os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket"
-  },
   term = "xterm-256color",
   window_background_image = "~/Pictures/wallpapers/walls/minimal-gradient-4.png",
   enable_wayland = true,
