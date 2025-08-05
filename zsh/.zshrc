@@ -8,7 +8,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/szymon/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 # compinstall no more
 
 # export COLORTERM="truecolor"
@@ -82,7 +82,5 @@ setopt PROMPT_SUBST
 PROMPT='%B%F{208}𝓲%b%f %B%F{51}%~ 🡪%b%f '
 
 # PATHS
-export PATH="/home/szymon/.cargo/bin:$PATH"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # End of lines added by compinstall
