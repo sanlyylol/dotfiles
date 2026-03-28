@@ -27,7 +27,7 @@ vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 -- Add this to your init.lua after setting options
 vim.opt.number = true
-vim.opt.relativenumber = false  -- Disable relative numbers
+vim.opt.relativenumber = false -- Disable relative numbers
 
 -- Load plugins
 require("config.lazy")
@@ -35,46 +35,103 @@ require("config.lazy")
 -- Set colorscheme after plugins
 vim.cmd.colorscheme("catppuccin")
 
+function _G.execute_file()
+	local ft = vim.bo.filetype
+	local fname = vim.fn.shellescape(vim.fn.expand("%"))
+	local cmd = ""
+
+	if ft == "c" then
+		local temp_exec = vim.fn.tempname()
+		cmd = "gcc "
+			.. fname
+			.. " -Wall"
+			.. " -Wextra"
+			.. " -lm"
+			.. " -lncurses"
+			.. " -lpthread"
+			.. " -lrt"
+			.. " -ldl"
+			.. " -O2"
+			.. " -o "
+			.. vim.fn.shellescape(temp_exec)
+			.. " && "
+			.. vim.fn.shellescape(temp_exec)
+			.. " ; rm -f "
+			.. vim.fn.shellescape(temp_exec)
+	elseif ft == "cpp" then
+		local temp_exec = vim.fn.tempname()
+		cmd = "g++ "
+			.. fname
+			.. " -o "
+			.. vim.fn.shellescape(temp_exec)
+			.. " && "
+			.. vim.fn.shellescape(temp_exec)
+			.. " ; rm -f "
+			.. vim.fn.shellescape(temp_exec)
+	elseif ft == "python" then
+		cmd = "python " .. fname
+	elseif ft == "javascript" then
+		cmd = "node " .. fname
+	elseif ft == "lua" then
+		cmd = "lua " .. fname
+	elseif ft == "sh" then
+		cmd = "sh " .. fname
+	elseif ft == "ruby" then
+		cmd = "ruby " .. fname
+	elseif ft == "php" then
+		cmd = "php " .. fname
+		-- Other languages here...
+	end
+
+	if cmd ~= "" then
+		vim.cmd("split | terminal " .. cmd)
+	else
+		print("No runner for: " .. ft)
+	end
+end
+
 -- Key mappings
 -- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File Explorer" })
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Source Current File" })
+vim.api.nvim_set_keymap("n", "<leader>r", ":lua execute_file()<CR>", { noremap = true }) -- execute current file in sepatare terminal
 vim.keymap.set("n", "<leader>m", require("snacks.dashboard").open, { desc = "Open Menu" })
 vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Live Grep" })
 vim.keymap.set("n", "<leader>fw", function()
-  require("telescope.builtin").grep_string({
-    search = vim.fn.expand("<cword>"),
-    only_sort_text = true,
-    search_dirs = {vim.fn.expand("%:p")}
-  })
+	require("telescope.builtin").grep_string({
+		search = vim.fn.expand("<cword>"),
+		only_sort_text = true,
+		search_dirs = { vim.fn.expand("%:p") },
+	})
 end, { desc = "Find current word in file" })
 
 -- Search for any text in current file
 vim.keymap.set("n", "<leader>fs", function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
+	require("telescope.builtin").current_buffer_fuzzy_find()
 end, { desc = "Fuzzy search in file" })
 
-vim.opt.showmode = false  -- Hide -- INSERT -- since we have statusline
+vim.opt.showmode = false -- Hide -- INSERT -- since we have statusline
 vim.opt.cmdheight = 1
-vim.opt.pumheight = 10    -- Limit popup menu height
-vim.opt.winblend = 10     -- Slight transparency for floating windows
+vim.opt.pumheight = 10 -- Limit popup menu height
+vim.opt.winblend = 10 -- Slight transparency for floating windows
 
 -- Better visual cues
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#569CD6", bg = "none" })
 vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "*",
-  callback = function()
-    -- Remove DOS line endings
-    vim.cmd([[%s/\r\+$//e]])
-    
-    -- Detect file format and convert if needed
-    if vim.bo.fileformat == "dos" then
-      vim.bo.fileformat = "unix"
-    end
-  end,
+	pattern = "*",
+	callback = function()
+		-- Remove DOS line endings
+		vim.cmd([[%s/\r\+$//e]])
+
+		-- Detect file format and convert if needed
+		if vim.bo.fileformat == "dos" then
+			vim.bo.fileformat = "unix"
+		end
+	end,
 })
 vim.opt.fileformats = "unix,dos"
 vim.diagnostic.config({
-  signs = false,
-  underline = false,
+	signs = false,
+	underline = false,
 })

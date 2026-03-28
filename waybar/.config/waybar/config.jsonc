@@ -2,7 +2,14 @@
   "layer": "top",
   "position": "top",
   "margin-bottom": 0,
-  "modules-left": ["clock", "custom/separator", "hyprland/workspaces", "custom/separator", "tray"],
+  "modules-left": [
+    "clock",
+    "custom/separator",
+    "network",
+    "hyprland/workspaces",
+    "custom/separator",
+    "tray",
+  ],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "temperature",
@@ -11,13 +18,12 @@
     "pulseaudio",
     "battery",
     "custom/notification",
-    "network",
     "custom/separator",
-    "custom/powermenu"
+    "custom/powermenu",
   ],
   "tray": {
     "icon-size": 16,
-    "spacing": 8
+    "spacing": 8,
   },
   "clock": {
     // 24 hour
@@ -27,7 +33,15 @@
     "format": " 󰸗 {:%Y | %b %e %a | %I:%M %p} ",
     "interval": 60,
     "tooltip": true,
-    "tooltip-format": "{:%d %B %H:%M}"
+    "tooltip-format": "{:%d %B %H:%M}",
+  },
+  "network": {
+    "format": " 󰖩 ",
+    "format-ethernet": " 󰌘 ",
+    "format-disconnected": "⚠ Disconnected",
+    "format-disabled": "✖ Disabled",
+    "tooltip-format": "{ifname}: {essid} {ipaddr}/{cidr}",
+    "interval": 2,
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -57,7 +71,7 @@
       "17": "7",
       "18": "8",
       "19": "9",
-      "110": "10"
+      "110": "10",
 
       // // 1-10
       // "1": "一",
@@ -81,44 +95,38 @@
       // "18": "八",
       // "19": "九",
       // "110": "十"
-    }
+    },
   },
   "hyprland/window": {
-    "format": "{}"
-  },
-  "network": {
-    "format": " 󰖩",
-    // "tooltip": "{ifname}",
-    "tooltip-format": "{essid}",
-    "interval": 2
+    "format": "{}",
   },
   "temperature": {
     "format": "{icon} {temperatureC}°C ",
     "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
-    "format-icons": ["", "", ""]
+    "format-icons": ["", "", ""],
   },
   "memory": {
     "format": "󰫗 {}% ",
-    "tooltip": "false"
+    "tooltip": "false",
   },
   "cpu": {
     "format": " {usage}% ",
-    "tooltip": "false"
+    "tooltip": "false",
   },
   "pulseaudio": {
     "format": " {volume}%",
     "scroll-step": 1,
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
   },
   "battery": {
     "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
   },
   "custom/powermenu": {
     "format": "  ",
     "tooltip": false,
-    "on-click": "exec wlogout -p layer-shell"
+    "on-click": "exec wlogout -p layer-shell",
   },
   "custom/notification": {
     "tooltip": false,
@@ -127,13 +135,13 @@
       "notification": "<span fgcolor='red'><sup></sup></span>",
       "none": "",
       "dnd-notification": "<span fgcolor='red'><sup></sup></span>",
-      "dnd-none": ""
+      "dnd-none": "",
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "on-click-right": "sleep 0.1 && swaync-client -d -sw",
-    "escape": true
-  }
+    "escape": true,
+  },
 }

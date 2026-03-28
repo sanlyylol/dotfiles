@@ -6,10 +6,8 @@ setopt autocd extendedglob
 unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
-
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/szymon/.zshrc'
-# compinstall no more
 
 # export COLORTERM="truecolor"
 # zinit
@@ -56,7 +54,7 @@ function zvm_after_select_vi_mode() {
       VIMODE="R"
     ;;
   esac
-  PS1="%B%F{062}$VIMODE%b%f %B%F{51}%~ 🡪%b%f "
+  PS1="%B%F{208}$VIMODE%b%f %B%F{51}%~ 🡪%b%f "
 }
 
 # aliases
@@ -84,5 +82,17 @@ PROMPT='%B%F{208}𝓲%b%f %B%F{51}%~ 🡪%b%f '
 # PATHS
 export PATH="/home/szymon/.cargo/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export VISUAL=snvim
+export EDITOR="$VISUAL"
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R'
 
 # End of lines added by compinstall
+
+# pnpm
+export PNPM_HOME="/home/szymon/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
