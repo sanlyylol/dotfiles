@@ -6,8 +6,10 @@ setopt autocd extendedglob
 unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/szymon/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
+# compinstall no more
 
 # export COLORTERM="truecolor"
 # zinit
@@ -86,8 +88,6 @@ export VISUAL=snvim
 export EDITOR="$VISUAL"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R'
-
-# End of lines added by compinstall
 
 # pnpm
 export PNPM_HOME="/home/szymon/.local/share/pnpm"

@@ -153,7 +153,6 @@ return {
 
 		-- Setup null-ls with the assembled sources
 		null_ls.setup({
-			-- NOTE: 'dependencies' is not a null-ls setup option; if you use lazy.nvim ensure plugin deps in your plugin spec.
 			debug = false,
 			sources = sources,
 			on_attach = function(client, bufnr)
