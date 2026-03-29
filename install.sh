@@ -175,6 +175,12 @@ wofi () {
   fi
 }
 
+hy3 () {
+  hyprpm update
+  hyprpm add https://github.com/outfoxxed/hy3
+  hyprpm enable hy3
+}
+
 packages () {
   echo "Installing additional packages"
   sudo pacman -S --noconfirm lua luarocks nwg-displays swaybg swayidle swayimg swaylock grc ripgrep exa fzf zoxide bat fd hyrprland-qt-support hyprlock hyprpicker hyprpolkitagent hyprshot hyprtoolkit cpio cmake glaze meson uwsm xdg-desktop-portal-hyprland awww thunar flameshot sddm
@@ -240,7 +246,9 @@ while true; do
   (8) wofi
   (9) sddm
   (10) packages (needed for other programs)
-  (11) font (without it some stuff looks bad)" input
+  (11) font (without it some stuff looks bad)
+  (12) hy3 plugin (it's a plugin for hyprland that you NEED for my hyprland config to be 
+  functional but it's only availble after: installing hyprland; packages; and rebooting" input
   case $input in 
     0 ) break;;
     1 ) hyprland;; 
@@ -254,11 +262,14 @@ while true; do
     9 ) sddm;;
     10 ) packages;;
     11 ) font;;
+    12 ) hy3;;
     * ) ;;
   esac
 done
     
-read -p "Script finished. Press anything to exit." i
+read -p "Script finished. The system most likely requires a reboot.
+Reboot now? (y/n)" i
 case $i in 
+  [yY]* ) sudo reboot;;
   * ) exit;;
 esac
