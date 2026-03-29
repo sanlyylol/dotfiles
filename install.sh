@@ -266,6 +266,8 @@ while true; do
     * ) ;;
   esac
 done
+
+rm -rf ./dotfiles
     
 read -p "Script finished. The system most likely requires a reboot.
 Reboot now? (y/n)" i
