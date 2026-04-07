@@ -27,7 +27,7 @@ vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 -- Add this to your init.lua after setting options
 vim.opt.number = true
-vim.opt.relativenumber = false -- Disable relative numbers
+vim.opt.relativenumber = true -- Disable relative numbers
 
 -- Load plugins
 require("config.lazy")
@@ -75,7 +75,7 @@ function _G.execute_file()
 	elseif ft == "lua" then
 		cmd = "lua " .. fname
 	elseif ft == "sh" then
-		cmd = "sh " .. fname
+		cmd = "bash " .. fname
 	elseif ft == "ruby" then
 		cmd = "ruby " .. fname
 	elseif ft == "php" then
@@ -93,7 +93,13 @@ end
 -- Key mappings
 -- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File Explorer" })
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Source Current File" })
-vim.api.nvim_set_keymap("n", "<leader>r", ":lua execute_file()<CR>", { noremap = true }) -- execute current file in sepatare terminal
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>r",
+	":lua execute_file()<CR>",
+	{ noremap = true },
+	{ desc = "Execute Current File" }
+) -- execute current file in sepatare terminal
 vim.keymap.set("n", "<leader>m", require("snacks.dashboard").open, { desc = "Open Menu" })
 vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Live Grep" })
@@ -132,6 +138,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 vim.opt.fileformats = "unix,dos"
 vim.diagnostic.config({
-	signs = false,
-	underline = false,
+	signs = true,
+	underline = true,
 })
