@@ -259,20 +259,21 @@ while true; do
   -> " input
   case $input in 
     0 ) clear; break;;
-    1 ) hyprland; clear;;
-    2 ) nvim; clear;;
-    3 ) wezterm; clear;;
-    4 ) zsh; clear;;
-    5 ) wallpapers; clear;;
-    6 ) wlogout; clear;;
-    7 ) waybar; clear;;
-    8 ) wofi; clear;;
-    9 ) sddm; clear;;
-    10 ) packages; clear;;
-    11 ) font; clear;;
-    12 ) hy3; clear;;
-    * ) clear;;
+    1 ) hyprland;;
+    2 ) nvim;;
+    3 ) wezterm;;
+    4 ) zsh;;
+    5 ) wallpapers;;
+    6 ) wlogout;;
+    7 ) waybar;;
+    8 ) wofi;;
+    9 ) sddm;;
+    10 ) packages;;
+    11 ) font;;
+    12 ) hy3;;
+    * ) ;;
   esac
+  clear
 done
 
 rm -rf ./dotfiles
