@@ -1,0 +1,4 @@
+#!/bin/sh
+# a file to run neovim as sudo while keeping current environment
+# move to /usr/local/bin or some other path directory
+sudo -E nvim -u "$HOME/.config/nvim/init.lua" "$@"
