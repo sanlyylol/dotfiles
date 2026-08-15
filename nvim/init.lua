@@ -91,15 +91,11 @@ function _G.execute_file()
 end
 
 -- Key mappings
--- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File Explorer" })
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Source Current File" })
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>r",
-	":lua execute_file()<CR>",
-	{ noremap = true },
-	{ desc = "Execute Current File" }
-) -- execute current file in sepatare terminal
+vim.keymap.set("n", "<leader>td", function()
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostics" })
+vim.keymap.set("n", "<space><space>x", ":source %<CR>", { desc = "Source Current File" })
+vim.keymap.set("n", "<leader>r", ":lua execute_file()<CR>", { noremap = true, desc = "Execute Current File" })
 vim.keymap.set("n", "<leader>m", require("snacks.dashboard").open, { desc = "Open Menu" })
 vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Live Grep" })
@@ -137,7 +133,3 @@ vim.api.nvim_create_autocmd("BufRead", {
 	end,
 })
 vim.opt.fileformats = "unix,dos"
-vim.diagnostic.config({
-	signs = true,
-	underline = true,
-})

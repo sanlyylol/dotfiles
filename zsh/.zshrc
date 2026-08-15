@@ -6,10 +6,8 @@ setopt autocd extendedglob
 unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
-
 # The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
-# compinstall no more
+zstyle :compinstall filename '/home/szymon/.zshrc'
 
 # export COLORTERM="truecolor"
 # zinit
@@ -79,15 +77,19 @@ eval "$(zoxide init zsh)"
 # PS1="I %~ > "
 # Configure prompt
 setopt PROMPT_SUBST
-PROMPT='%B%F{208}𝓲%b%f %B%F{51}%~ 🡪%b%f '
+PROMPT='%B%F{208}I%b%f %B%F{51}%~ 🡪%b%f '
 
 # PATHS
-export PATH="/home/szymon/.cargo/bin:$PATH"
+export PATH="/home/szymon/.local/bin:/home/szymon/.cargo/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export VISUAL=snvim
 export EDITOR="$VISUAL"
+export MANWIDTH=999
+export MANPAGER="nvim +Man!"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R'
+
+# End of lines added by compinstall
 
 # pnpm
 export PNPM_HOME="/home/szymon/.local/share/pnpm"

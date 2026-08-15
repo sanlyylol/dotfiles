@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-while ! pgrep -x "awww-daemon" > /dev/null; do
-  sleep 1
+for i in {1..30}; do
+    if pgrep -x "awww-daemon" > /dev/null; then
+        break
+    fi
+    sleep 1
 done
 
-awww img ~/Pictures/wallpapers/walls/thunderstorm-sea.webp
+sleep 1
+
+awww img ~/Pictures/wallpapers/mountrain.gif
