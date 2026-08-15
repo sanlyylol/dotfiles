@@ -1,0 +1,9 @@
+{
+  "runtime.version": "LuaJIT",
+  "workspace.library": [
+    "/usr/share/hypr/stubs",
+    "$VIMRUNTIME"
+  ],
+  "diagnostics.globals": ["vim", "hl"],
+  "hint.enable": true
+}
