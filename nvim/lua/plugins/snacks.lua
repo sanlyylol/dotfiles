@@ -31,15 +31,6 @@ return {
 
 				-- Insert your "NoitaCode" entry just before "quit" (typically last entry)
 				table.insert(keys, #keys, {
-					desc = "NoitaCode folder",
-					icon = "★", -- Unicode black star
-					key = "D",
-					action = function()
-						-- Open Snacks.explorer rooted at your data directory
-						Snacks.explorer({ cwd = vim.fn.expand("~/NoitaCode/data") })
-					end,
-				})
-				table.insert(keys, #keys, {
 					desc = "Projects",
 					icon = "󰉓",
 					key = "p",

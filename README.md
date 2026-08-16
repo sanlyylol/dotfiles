@@ -1,14 +1,12 @@
-This is my github repo for storing my dotfiles for all the config i do. This config is very dependant on:
-- My downloaded packages
-- My operating system
-- My hardware
+This is my GitHub repo for storing my dotfiles for *almost* all the config I do. 
 
-even then, you can still download the dotfiles and packages and just modify them to your needs.
+Notes:
+- This config is very dependent on:
+   My downloaded packages
+   My operating system
+   My hardware
+if you download it there's no guaranteed it will work.
 
-My setup was heavily influenced by maxhu08's dotfiles, this is basically just his setup but modifed.
+- Even though you can copy the configs with the installation file you still need to install all the programs for them to work correctly, for that, you can look inside the files to see which programs are being used.
 
-You can visit maxhu08's github here:
-- https://github.com/maxhu08/
-
-There's a list of all my packages i downloaded using either pacman or yay which you can find in the dotfiles repo in 'installed-packages'
-i'm gonna update the package list from time to time probably whenever i update the dotfiles repo.
+- Installing the font included in the repo parent dir is heavily recommended.

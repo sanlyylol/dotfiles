@@ -6,6 +6,7 @@
     "clock",
     "custom/separator",
     "tray",
+    "custom/separator",
     "hyprland/workspaces",
     "custom/separator"
   ],
@@ -91,7 +92,7 @@
       "",
       "",
       ""
-    ],
+    ]
   },
   "custom/powermenu": {
     "format": "  ",
